@@ -1,0 +1,6 @@
+framework module Pods_sasTests {
+  umbrella header "Pods-sasTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

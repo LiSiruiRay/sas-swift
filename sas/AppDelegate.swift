@@ -21,6 +21,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let db = Firestore.firestore()
         print(db)
+        
+        let one_collection = db.collection("Meta")
+        print("collection: \(one_collection)")
+        
+        let one_doc = one_collection.document("metadata")
+        print("one doc: \(one_doc)")
+        print("one doc id: \(one_doc.documentID)")
+        
+        db.collection("Meta/metadata/News").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
+
+//        one_doc.getDocument { (document, error) in
+//            if let document = document, document.exists {
+//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+//                print("Document data: \(dataDescription)")
+//            } else {
+//                print("Document does not exist")
+//            }
+//        }
         return true
     }
 
